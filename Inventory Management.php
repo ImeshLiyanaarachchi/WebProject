@@ -96,7 +96,7 @@
                 }
             ?>
 
-                
+             
                 <form action="includes/addItem.inc.php" method="post" id="item">
                 <input type="hidden" name="form_type" value="item">
                     <div class="input-group mb-3 ">
