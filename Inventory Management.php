@@ -36,9 +36,9 @@
     <section>
         <!----------------------- Main Container for add new Item -------------------------->
         <div class="container d-flex justify-content-center align-items-center min-vh-70" style="margin-bottom: 20px;">
-        <!----------------------- Login Container -------------------------->
+        
         <div class="row border rounded-5 p-3 shadow box-area d-flex justify-content-center align-items-center" style="background-color: rgba(0,0,0,0.4)" >
-        <!-------------------- ------ Right Box ---------------------------->
+        
         <div class="col-md-6 right-box">
             <div class="row align-items-center">
                 <div class="header-text mb-4">
@@ -96,7 +96,8 @@
                 }
             ?>
 
-             
+                <!----------------Add new item Form----------------------------------->
+
                 <form action="includes/addItem.inc.php" method="post" id="item">
                 <input type="hidden" name="form_type" value="item">
                     <div class="input-group mb-3 ">
@@ -150,9 +151,9 @@
 
     <!----------------------- Main Container for add new category -------------------------->
     <div class="container d-flex justify-content-center align-items-center min-vh-70" style="margin-bottom: 20px;" id="addCategory">
-        <!----------------------- Login Container -------------------------->
+        
         <div class="row border rounded-5 p-3 shadow box-area d-flex justify-content-center align-items-center" style="background-color: rgba(0,0,0,0.4)" >
-        <!-------------------- ------ Right Box ---------------------------->
+        
         <div class="col-md-6 right-box">
             <div class="row align-items-center">
                 <div class="header-text mb-4">
@@ -192,7 +193,7 @@
                     }
         ?>
 
-                
+             <!------------------------add new category form------------------------------------------->   
 
                 <form action="includes/addCategory.inc.php" method="post" id="category">
                 <input type="hidden" name="form_type" value="category">
@@ -207,8 +208,8 @@
         </div>
         
     
-        </section>
-        <!-- Logout Confirmation Modal -->
+       
+        <!------------------------------- Logout Confirmation Modal --------------------------------------->
         <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -227,6 +228,7 @@
         </div>
         </div>
 
+                <!--------------- javascript for logout----------------------------->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             function confirmLogout(event) {
