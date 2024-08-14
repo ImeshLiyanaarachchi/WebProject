@@ -145,7 +145,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php include 'includes/viewCategories.inc.php'; ?>
+                                <?php include 'includes/viewUsers.inc.php'; ?>
                             </tbody>
                         </table>
                     </div>
