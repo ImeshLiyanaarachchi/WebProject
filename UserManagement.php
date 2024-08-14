@@ -132,8 +132,9 @@
         <hr style="color:white">
     </section>
             <!-- User Table -->
+            
         <div class="table-responsive">
-        <h2 style="color:white; text-align: center; margin-top: 20px;">User Detalis</h2>
+        <h2 style="color:white; text-align: center;margin-top: 20px;">User Detalis</h2>
                         <table class="table table-bordered table-striped table-hover"  style="color: white; background-color: black; width: 70%; font-size: 1.1em; margin: 0 auto;margin-bottom: 20px;">
                             <thead class="thead-dark">
                                 <tr style="background-color:#b18224">
@@ -144,30 +145,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                require 'includes/dbh.inc.php';
-
-                                $sql = "select id, username, email FROM users";
-                                $result = mysqli_query($conn, $sql);
-
-
-                            if (mysqli_num_rows($result) > 0) {
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        echo '<tr>';
-                                        echo '<td style="color: white; background-color: black">' . $row['id'] . '</td>';
-                                        echo '<td style="color: white; background-color: black">' . $row['username'] . '</td>';
-                                        echo '<td style="color: white; background-color: black">' . $row['email'] . '</td>';
-                                        echo '<td>
-                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationModal" data-action="includes/deleteUser.inc.php?id=' . $row['id'] . '" data-message="Are you sure you want to delete this user?">Delete</button>
-                                        </td>';
-                                        echo '</tr>';
-                                    }
-                                } else {
-                                    echo '<tr><td colspan="4" class="text-center">No users found.</td></tr>';
-                                }
-
-                                mysqli_close($conn);
-                                ?>
+                                <?php include 'includes/viewCategories.inc.php'; ?>
                             </tbody>
                         </table>
                     </div>
@@ -215,4 +193,3 @@
     
 </body>
 </html>
-
