@@ -14,4 +14,6 @@ if ($result->num_rows > 0) {
         $categories[] = $row['category'];
     }
 }
+// Close the connection
+$conn->close();
 ?>
