@@ -1,6 +1,7 @@
 <!--add categories into the list box when the page load-->
 <?php
     include 'includes/categoryList.inc.php';
+    include 'includes/dashboard.inc.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +14,26 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing Script:wght@400;700&display=swap">
-    <title>Dulmi Skincare | Dashboard</title>
+    <title>Epicare Skincare | Dashboard</title>
+
+    <style>
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto;  /* Enable vertical scrolling */
+            overflow-x: auto;  /* Enable horizontal scrolling */
+            border: 1px solid #ddd; 
+            width: 80%;
+            margin: 0 auto; /* Center the container horizontally */
+            margin-bottom: 20px;
+        }
+
+        #fixed-header {
+            position: sticky;
+            top: 0; /* Set the top position to keep header fixed at the top */
+            z-index: 2; /* Ensure the header stays on top of other content */
+        }
+
+        </style>
 </head>
 <body style="background-image : url(back3.png)">
     <nav class="nav1">
@@ -33,7 +53,111 @@
         </ul>
     </nav>
     
+    <hr style="color:white";>   
+
+    <!----------------------------------- buttons to go to relevant places----------------------------------->
+
+    <a href="#addItem" class="btn btn-info" role="button" style ="margin-left:20px">Add New Item</a>
+    <a href="#addCategory" class="btn btn-info" role="button" style ="margin-left:20px">Add New Category</a>
+
+    <!-----------------------------------------------search bar and category search--------------------------------------->
+    <br><br><h1 style="color:white"><center>Inventory Details<center></h1>
+            <div class="filter-container" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px; margin-top:20px">
+                <!-- Category Filter -->
+                <select id="category" name="category" class="form-select form-control-lg bg-light fs-6" style="width: 20%; border-radius: 25px; border: 1px solid #ccc; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); margin-right: 10px;">
+                                <option value="" disabled selected> Select a Category </option> 
+                                <?php
+                                    if (!empty($categories)) {
+                                        // Output each category as an option in the dropdown
+                                        foreach ($categories as $category) {
+                                            echo "<option>" . htmlspecialchars($category) . "</option>";
+                                        }
+                                    } 
+                                    else {
+                                        echo "<option>No categories available</option>";
+                                    }
+                                    ?>
+                </select>
+                <div class="search-bar-container" style="position: relative; width: 50%; padding-right: 40px;">
+                    <i class="fas fa-search search-icon" style="position: absolute; top: 50%; left: 15px; transform: translateY(-50%); color: #999;"></i>
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search for items..." 
+                        style="padding-left: 40px; border-radius: 25px; border: 1px solid #ccc; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); width: 100%;">
+                </div>
+                <button onclick="location.reload();" class="btn btn-info" >
+                    <i class="bi bi-arrow-clockwise"></i> Reload</i>
+                </button>
+            </div>
+
+
+            <!------------------------------------------------ User Table ---------------------------------------------------------------->
+            <div id="alert-container"></div>   
+            <?php
+                $items = include 'includes/viewItems.inc.php';
+                ?>
+                <div class="table-container">
+                <table class="table table-bordered table-striped table-hover"  style="color: white; background-color: black; width: 100%; font-size: 1.1em; margin: 0 auto;">
+                    <thead>
+                    <tr id="fixed-header" style="background-color:#b18224">
+                            <th style="color: white; ">ID</th>
+                            <th style="color: white; ">Item Name</th>
+                            <th style="color: white; ">Quantity</th>
+                            <th style="color: white; ">Buying Price</th>
+                            <th style="color: white; ">Selling Price</th>
+                            <th style="color: white; ">Total Inventory</th>
+                            <th style="color: white; ">Category</th>
+                            <th style="color: white; ">Image</th>
+                            <th style="color: white; ">Description</th>
+                            <th style="color: white; ">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (!empty($items)): ?>
+                            <?php foreach ($items as $row): ?>
+                                <tr>
+                                    <td style="color: white; background-color: black"><?= htmlspecialchars($row['item_ID']) ?></td>
+                                    <td style="color: white; background-color: black"><?= htmlspecialchars($row['item_name']) ?></td>
+                                    <td style="color: white; background-color: black"><?= htmlspecialchars($row['quantity']) ?></td>
+                                    <td style="color: white; background-color: black"><?= htmlspecialchars($row['buying_price']) ?></td>
+                                    <td style="color: white; background-color: black"><?= htmlspecialchars($row['selling_price']) ?></td>
+                                    <td style="color: white; background-color: black"><?= htmlspecialchars($row['total_inventory']) ?></td>
+                                    <td style="color: white; background-color: black"><?= htmlspecialchars($row['category']) ?></td>
+                                    <td style="color: white; background-color: black">
+                                    <img 
+                                        src="<?= htmlspecialchars(str_replace('../', '', $row['image_path'])); ?>" 
+                                        alt="<?= htmlspecialchars($row['item_name']); ?>" 
+                                        style="width:100px; height:auto;" 
+                                        onclick="openModal('<?= htmlspecialchars($row['image_path']); ?>')">
+
+                                    </td>
+                                    <td style="color: white; background-color: black"><?= htmlspecialchars($row['description']) ?></td>
+                                    
+                                    <td>
+                                    <!-- Edit Button with Icon -->
+                                    <a href="#" onclick="editRow(this)" class="text-white me-2"   title="Edit">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+
+                                    <!-- Delete Button with Icon -->
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#confirmationModal" data-action="includes/deleteItem.inc.php?id=<?php echo $row['item_ID']; ?>" data-message="Are you sure you want to delete this user?" class="text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr><td colspan="8" class="text-center">No items found.</td></tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+                </div>
+                <hr style = "color:white">
+            
+                
     <section>
+
+
+
         <!----------------------- Main Container for add new Item -------------------------->
         <div class="container d-flex justify-content-center align-items-center min-vh-70" style="margin-bottom: 20px;">
         
