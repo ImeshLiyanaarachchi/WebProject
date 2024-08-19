@@ -5,7 +5,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Prepare the delete query
-    $sql = "DELETE FROM users WHERE id=?";
+    $sql = "DELETE FROM users WHERE user_id=?";
     $stmt = mysqli_prepare($conn, $sql);
 
     if ($stmt) {
