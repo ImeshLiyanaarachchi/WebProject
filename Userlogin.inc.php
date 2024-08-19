@@ -27,7 +27,7 @@ if (isset($_POST["submit"])) {
                     exit();
                 } else if ($pwdCheck == true) {
                     session_start();
-                    $_SESSION['userId'] = $row['id'];
+                    $_SESSION['userId'] = $row['user_Id'];
                     $_SESSION['userUid'] = $row['username'];
 
                     header("Location:../Userdashboard.php?login=success");
