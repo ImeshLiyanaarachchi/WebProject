@@ -5,40 +5,39 @@ if (isset($_POST['submititem'])) {
     // Retrieve form data
     $item_name = $_POST['Iname'];
     $quantity = $_POST['quantity'];
-    $price = $_POST['price'];
+    $Buying_price = $_POST['buy_price'];
+    $Selling_price = $_POST['sell_price'];
     $category = $_POST['category'];
     $description = isset($_POST['description']) ? $_POST['description'] : NULL;
-    
+
     // Basic validation
-if (empty($item_name) || empty($quantity) || empty($price) || empty($category)) {
-    header("Location: ../Inventory Management.php?error=emptyfields&form=item" . "#addItem");
-    exit();
-}
+    if (empty($item_name) || empty($quantity) || empty($Buying_price) || empty($Selling_price) || empty($category)) {
+        header("Location: ../Inventory Management.php?error=emptyfields&form=item#addItem");
+        exit();
+    }
 
-// Prepare and execute a statement to check if the item name already exists
-$sql = "SELECT item_Id FROM items WHERE item_name=?";
-$stmt = mysqli_stmt_init($conn);
-if (!mysqli_stmt_prepare($stmt, $sql)) {
-    header("Location: ../Inventory Management.php?error=sqlerror". "#addItem");
-    exit();
-}
+    // Check if the item name already exists
+    $sql = "SELECT item_Id FROM items WHERE item_name=?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("Location: ../Inventory Management.php?error=sqlerror&form=item#addItem");
+        exit();
+    }
 
-mysqli_stmt_bind_param($stmt, "s", $item_name);
-mysqli_stmt_execute($stmt);
-mysqli_stmt_store_result($stmt);
+    mysqli_stmt_bind_param($stmt, "s", $item_name);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_store_result($stmt);
 
-if (mysqli_stmt_num_rows($stmt) > 0) {
-    // If an item with the same name exists, redirect with an error
-    header("Location: ../Inventory Management.php?error=alreadyExist&form=item" ."#addItem");
-    exit();
-}
+    if (mysqli_stmt_num_rows($stmt) > 0) {
+        header("Location: ../Inventory Management.php?error=alreadyExist&form=item#addItem");
+        exit();
+    }
+
 
 
     try {
         // Fetch the category ID based on the category name
         $sql = "SELECT categoryId FROM category WHERE category = ?";
-        $stmt = mysqli_stmt_init($conn);
-
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             throw new Exception("SQL preparation error");
         }
@@ -53,49 +52,45 @@ if (mysqli_stmt_num_rows($stmt) > 0) {
             throw new Exception("Category not found");
         }
 
-     // Handling the image upload (if applicable)
-    
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $image = $_FILES['image']['name'];
-        $target_dir = "../uploads/";
-        $target_file = $target_dir . basename($image);
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    
-        // Check if the file is an image
-        $check = getimagesize($_FILES["image"]["tmp_name"]);
-        if ($check === false) {
-            die("Error: File is not an image.");
-        }
-    
-        // Try to upload the file
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-            echo "The file has been uploaded successfully.";
-        } else {
-            die("Error: File upload failed"." #addItem");
-        }
-    } else {
-        die("Error: " . $_FILES['image']['error']);
-    }
 
-        
-        // Prepare and execute the SQL statement
-        $sql = "INSERT INTO items (item_name, image_path, quantity, price, categoryId, description) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = mysqli_stmt_init($conn);
 
+        // Handle image upload
+        $target_file = NULL; // Default to NULL if no image is uploaded
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $image = $_FILES['image']['name'];
+            $target_dir = "../uploads/";
+            $target_file = $target_dir . basename($image);
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+            // Check if the file is an image
+            $check = getimagesize($_FILES["image"]["tmp_name"]);
+            if ($check === false) {
+                throw new Exception("File is not an image");
+            }
+
+            // Try to upload the file
+            if (!move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                throw new Exception("File upload failed");
+            }
+        }
+
+        $totalInventory = $Buying_price * $quantity;
+
+        // Prepare SQL statement to insert the new item
+        $sql = "INSERT INTO items (item_name, image_path, quantity, buying_price, selling_price, total_inventory, categoryId, description) VALUES (?, ?, ?, ?, ?, ?, ? , ?)";
         if (!mysqli_stmt_prepare($stmt, $sql)) {
-            throw new Exception("SQL preparation error" . "#addItem");
+            throw new Exception("SQL preparation error");
         }
 
-        // Bind parameters and execute statement
-        mysqli_stmt_bind_param($stmt, "ssidis", $item_name, $target_file, $quantity, $price, $categoryId, $description);
+        mysqli_stmt_bind_param($stmt, "ssidddis", $item_name, $target_file, $quantity, $Buying_price, $Selling_price, $totalInventory, $categoryId, $description);
         mysqli_stmt_execute($stmt);
 
-        header("Location: ../Inventory Management.php?form=item&success=itemadded" . "#addItem");
+        header("Location: ../Inventory Management.php?form=item&success=itemadded#addItem");
         exit();
     } catch (Exception $e) {
         // Log the error message or handle it as needed
         error_log($e->getMessage());
-        header("Location: ../Inventory Management.php?error=" . urlencode($e->getMessage()) . "&form=item" ."#addItem");
+        header("Location: ../Inventory Management.php?error=" . urlencode($e->getMessage()) . "&form=item#addItem");
         exit();
     }
 }
