@@ -57,6 +57,10 @@ nav ul li a {
     border-radius: 3px;
     text-transform: uppercase;
 }
+nav ul li a.active {
+    background: #825f07; /* Highlight color */
+    font-weight: bold; /* Optional: Make the text bold */
+}
 
 a.active, a:hover {
     background: #825f07;
@@ -77,6 +81,10 @@ a.active, a:hover {
 #check {
     display: none;
 }
+
+
+
+
 
 @media (max-width: 952px) {
     label.logo {
