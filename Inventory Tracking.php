@@ -1,7 +1,6 @@
-
 <?php
 require_once 'includes/viewSelling.inc.php'; // Include the SQL file
-include 'includes/dashboard.inc.php'; ?>
+include 'includes/dashboard.inc.php';
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +18,6 @@ include 'includes/dashboard.inc.php'; ?>
             max-height: 400px;
             overflow-y: auto;  /* Enable vertical scrolling */
             overflow-x: auto;  /* Enable horizontal scrolling */
-            border: 1px solid #ddd; 
             width: 80%;
             margin: 0 auto; /* Center the container horizontally */
             margin-bottom: 20px;
@@ -30,7 +28,7 @@ include 'includes/dashboard.inc.php'; ?>
             top: 0; /* Set the top position to keep header fixed at the top */
             z-index: 2; /* Ensure the header stays on top of other content */
         }
-        </style>
+    </style>
 </head>
 <body style="background-image: url(back3.png)">
     <nav class="nav1">
@@ -50,48 +48,45 @@ include 'includes/dashboard.inc.php'; ?>
         </ul>
     </nav>
 
-
-<section>
-<h2 class="text-center" style="color:white; text-align: center;margin-top: 20px;">Sales Records</h2>
+    <section>
+    <h2 class="text-center" style="color:white; text-align: center; margin-top: 20px;">Sales Records</h2> <!-- Table name -->
     <div class="table-container">
-
-            
-            <table class="table table-bordered" style="color: white; background-color: black; width: 100%; font-size: 1.1em; margin: 0 auto;">
-                <thead>
-                    <tr style="background-color:#b18224">
-                        <th>Sell ID</th>
-                        <th>User ID</th>
-                        <th>Item ID</th>
-                        <th>Quantity</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>" . htmlspecialchars($row['sell_ID']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['user_Id']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['item_ID']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['quantity']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['Amount']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['Date']) . "</td>";
-                            echo "<td><a href='includes/deleteSelling.inc.php?sell_ID=" . htmlspecialchars($row['sell_ID']) . "' class='btn btn-danger' onclick=\"return confirm('Are you sure you want to delete this record?');\">Delete</a></td>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='6' class='text-center'>No records found</td></tr>";
+        <table class="table table-bordered" style="color: white; background-color: black;">
+            <thead>
+                <tr id="fixed-header" style="background-color:#b18224">
+                    <th>Sell ID</th>
+                    <th>User ID</th>
+                    <th>Item ID</th>
+                    <th>Quantity</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row['sell_ID']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['user_Id']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['item_ID']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['quantity']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['Amount']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['Date']) . "</td>";
+                        echo "<td><a href='includes/deleteSelling.inc.php?sell_ID=" . htmlspecialchars($row['sell_ID']) . "' class='btn btn-danger' onclick=\"return confirm('Are you sure you want to delete this record?');\">Delete</a></td>";
+                        echo "</tr>";
                     }
-                    ?>
-                </tbody>
-            </table>
-        </div>
+                } else {
+                    echo "<tr><td colspan='7' class='text-center'>No records found</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
     </section>
 
-<!-- Logout Confirmation Modal -->
+    <!-- Logout Confirmation Modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
