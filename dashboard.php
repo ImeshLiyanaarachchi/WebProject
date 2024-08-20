@@ -1,8 +1,4 @@
-<!--add categories into the list box when the page load-->
-<?php
-    include 'includes/dashboard.inc.php';
-    include 'includes/dashboard.inc.php'; 
-?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -60,30 +56,14 @@
         </ul>
     </nav>
     <section>
-        
+        <?php include 'includes/dashboard.inc.php'; ?>
         <h1 style="color: #be994e; margin-left:20px">Welcome, <?php echo htmlspecialchars($_SESSION['userUid']); ?>!</h1>
         <p style="color: #be994e; margin-left:20px">Here is your dashboard overview:</p>
     </section>
     <hr style="color:white";>
 
 <section>
-    <?php
-require 'includes/dbh.inc.php';
-
-// Fetch data for the dashboard
-// User Count
-$userCountQuery = "SELECT COUNT(*) AS userCount FROM users";
-$userCountResult = mysqli_query($conn, $userCountQuery);
-$userCount = mysqli_fetch_assoc($userCountResult)['userCount'];
-
-// Inventory Count
-$inventoryCountQuery = "SELECT COUNT(*) AS itemCount FROM items";
-$inventoryCountResult = mysqli_query($conn, $inventoryCountQuery);
-$itemCount = mysqli_fetch_assoc($inventoryCountResult)['itemCount'];
-
-
-?>
-
+<?php include 'includes/chart.inc.php'; ?>
 <div class="row" style="justify-content: center; align-items: center;">
             <!-- User Management Overview -->
             <div class="col-lg-4 col-md-6" >
@@ -96,7 +76,7 @@ $itemCount = mysqli_fetch_assoc($inventoryCountResult)['itemCount'];
                 </div>
             </div>
 
-            <!-- Inventory Management Overview -->
+<!-- Inventory Management Overview -->
             <div class="col-lg-4 col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -112,39 +92,7 @@ $itemCount = mysqli_fetch_assoc($inventoryCountResult)['itemCount'];
   </section>
   <hr style="color:white";>
   <section>
-    <?php
-    require 'includes/dbh.inc.php';
-
-    // Fetch data for the dashboard
-    $userCountQuery = "SELECT COUNT(*) AS userCount FROM users";
-    $userCountResult = mysqli_query($conn, $userCountQuery);
-    $userCount = mysqli_fetch_assoc($userCountResult)['userCount'];
-
-    $inventoryCountQuery = "SELECT COUNT(*) AS itemCount FROM items";
-    $inventoryCountResult = mysqli_query($conn, $inventoryCountQuery);
-    $itemCount = mysqli_fetch_assoc($inventoryCountResult)['itemCount'];
-
-    $categoryQuery = "SELECT category, COUNT(*) as count FROM category LEFT JOIN items ON category.categoryId = items.categoryId GROUP BY category";
-    $categoryResult = mysqli_query($conn, $categoryQuery);
-
-    // Fetch category data for the chart
-    $categories = [];
-    $itemCounts = [];
-    if (mysqli_num_rows($categoryResult) > 0) {
-        while ($row = mysqli_fetch_assoc($categoryResult)) {
-            $categories[] = $row['category'];
-            $itemCounts[] = $row['count'];
-        }
-    }
-
-    // Close the database connection
-    mysqli_close($conn);
-
-    // Pass data to JavaScript
-    $categoriesJson = json_encode($categories);
-    $itemCountsJson = json_encode($itemCounts);
-    ?>
-
+  <?php include 'includes/chart.inc.php'; ?>
     <div class="container">
         <h2 style="color: #be994e;">Category Distribution</h2>
         <canvas id="categoryPieChart"></canvas>
@@ -210,6 +158,7 @@ $itemCount = mysqli_fetch_assoc($inventoryCountResult)['itemCount'];
     <?php
     
 require 'includes/dbh.inc.php';
+
 
 $sql = "SELECT c.category, SUM(i.total_inventory) AS total_price
         FROM category c
@@ -290,9 +239,3 @@ if ($result) {
 
 </body>
 </html>
-
-
-
-
-
-
