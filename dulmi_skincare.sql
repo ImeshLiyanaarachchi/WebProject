@@ -11,7 +11,8 @@ CREATE TABLE users(
 user_Id INT(10)  AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR(30) UNIQUE,
 email VARCHAR(50),
-password VARCHAR(225) );
+password VARCHAR(225),
+status VARCHAR(8) );
 
 CREATE TABLE category(
 categoryId INT(5)  AUTO_INCREMENT PRIMARY KEY,
