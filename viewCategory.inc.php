@@ -11,9 +11,6 @@ if (mysqli_num_rows($result) > 0) {
         $tableRows .= '<tr>';
         $tableRows .= '<td style="color: white; background-color: black">' . $row['categoryId'] . '</td>';
         $tableRows .= '<td style="color: white; background-color: black">' . $row['category'] . '</td>';
-        $tableRows .= '<td style="text-align: center;">
-                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationModal" data-action="includes/deleteCategory.inc.php?categoryId=' . $row['categoryId'] . '" data-message="Are you sure you want to delete this Category?">Delete</button>
-                      </td>';
         $tableRows .= '</tr>';
     }
 } else {

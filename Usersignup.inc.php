@@ -6,6 +6,7 @@ if (isset($_POST["submit"])) {
     $email = $_POST['mail'];
     $pwd = $_POST['pwd'];
     $pwdRepeat = $_POST['pwd-repeat'];
+    $status = "active";
 
     if (empty($uid) || empty($email) || empty($pwd) || empty($pwdRepeat)) {
         header("Location: ../User Management.php?error=emptyfields&uid=".$uid."&mail=".$email);
@@ -37,7 +38,7 @@ if (isset($_POST["submit"])) {
                 header("Location: ../User Management.php?error=usertaken&mail=".$email);
                 exit();
             } else {
-                $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+                $sql = "INSERT INTO users (username, email, password , status) VALUES (?, ?, ? , ?)";
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
                     header("Location: ../User Management.php?error=sqlerror");
@@ -45,7 +46,7 @@ if (isset($_POST["submit"])) {
                 } else {
                     $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-                    mysqli_stmt_bind_param($stmt, "sss", $uid, $email, $hashedPwd);
+                    mysqli_stmt_bind_param($stmt, "ssss", $uid, $email, $hashedPwd,$status);
                     mysqli_stmt_execute($stmt);
                     header("Location: ../User Management.php?signup=success");
                     exit();

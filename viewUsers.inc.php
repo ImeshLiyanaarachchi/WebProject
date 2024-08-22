@@ -1,7 +1,7 @@
 <?php
 require 'dbh.inc.php';
 
-$sql = "SELECT user_Id, username, email FROM users";
+$sql = "SELECT user_Id, username, email , status FROM users";
 $result = mysqli_query($conn, $sql);
 
 $tableRows = '';
@@ -12,8 +12,9 @@ if (mysqli_num_rows($result) > 0) {
         $tableRows .= '<td style="color: white; background-color: black">' . $row['user_Id'] . '</td>';
         $tableRows .= '<td style="color: white; background-color: black">' . $row['username'] . '</td>';
         $tableRows .= '<td style="color: white; background-color: black">' . $row['email'] . '</td>';
+        $tableRows .= '<td style="color: white; background-color: black">' . $row['status'] . '</td>';
         $tableRows .= '<td>
-                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationModal" data-action="includes/deleteUser.inc.php?id=' . $row['user_Id'] . '" data-message="Are you sure you want to delete this user?">Delete</button>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationModal" data-action="includes/deleteUser.inc.php?id=' . $row['user_Id'] . '" data-message="Are you sure you want to deactivate this user?">Deactivate</button>
                       </td>';
         $tableRows .= '</tr>';
     }

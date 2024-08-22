@@ -1,5 +1,4 @@
 <?php
-
 require_once 'includes/dbh.inc.php'; // Database connection file
 
 // Query to fetch all rows from the selling table
@@ -12,5 +11,4 @@ if (!$result) {
 
 // Close the connection
 mysqli_close($conn);
-
 ?>
