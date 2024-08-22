@@ -14,11 +14,11 @@ if (!isset($_SESSION['userId'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
-    <title>Dulmi Skincare | Home</title>
+    <title>EpiCare SkinCare | Home</title>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Dulmi Skincare Inventory Management System</h1>
+        <h1>Welcome to EpiCare SkinCare Inventory Management System</h1>
         <p>You are logged in as <?php echo $_SESSION['userUid']; ?>.</p>
         <a href="includes/logout.inc.php" class="btn btn-danger">Logout</a>
     </div>

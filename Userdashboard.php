@@ -2,8 +2,9 @@
 // Start the session
 session_start();
 
+
 // Including the items data from the database
-include 'includes/dbh.inc.php';
+
 $items = include 'includes/viewItems.inc.php';
 ?>
 
@@ -16,7 +17,7 @@ $items = include 'includes/viewItems.inc.php';
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap">
-    <title>Dulmi Skincare | Dashboard</title>
+    <title>EpiCare SkinCare | Dashboard</title>
 
     <style>
         .table-container {
@@ -39,7 +40,7 @@ $items = include 'includes/viewItems.inc.php';
 <body style="background-image: url(women.png);">
     <!-- Navigation -->
     <nav class="nav1">
-        <label class="logo" style="font-family: 'Dancing Script', sans-serif; font-size:40px">Dulmi SkinCare</label>
+        <label class="logo" style="font-family: 'Dancing Script', sans-serif; font-size:40px">EpiCare SkinCare</label>
     </nav>
     <nav class="nav2">
         <input type="checkbox" id="check">
@@ -94,6 +95,9 @@ $items = include 'includes/viewItems.inc.php';
                                         break;
                                     case 'insufficientquantity':
                                         $message = 'Insufficient quantity available.';
+                                        break;
+                                    case 'quantityoverflow':
+                                        $message = 'The quantity exceeds the available stock.';
                                         break;
                                     default:
                                         $message = 'An unknown error occurred.';
@@ -239,7 +243,6 @@ $items = include 'includes/viewItems.inc.php';
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="user.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/validation.js"></script>
 

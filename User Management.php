@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing Script:wght@400;700&display=swap">
-    <title>Dulmi Skincare | Dashboard</title>
+    <title>EpiCare SkinCare | Dashboard</title>
 </head>
 <body style="background-image : url(back3.png)">
     <nav class="nav1">
-    <label class="logo" style = "font-family: 'Dancing Script', sans-serif; font-size:40px">Dulmi SkinCare</label>
+    <label class="logo" style = "font-family: 'Dancing Script', sans-serif; font-size:40px">EpiCare SkinCare</label>
     </nav>
     <nav class="nav2">
         <input type="checkbox" id="check">
@@ -143,6 +143,7 @@
                                     <th scope="col" >ID</th>
                                     <th scope="col" >Username</th>
                                     <th scope="col" >Email</th>
+                                    <th scope="col" >status</th>
                                     <th scope="col" ></th>
                                 </tr>
                             </thead>

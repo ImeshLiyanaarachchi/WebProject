@@ -11,7 +11,7 @@
     <!--For icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing Script:wght@400;700&display=swap">
-    <title>Dulmi Skincare | Login</title>
+    <title>Epicare Skincare | Login</title>
 </head>
 <body>
  <!----------------------- Main Container -------------------------->
@@ -25,7 +25,7 @@
        <div class="col-md-6 right-box">
           <div class="row align-items-center">
                 <div class="header-text mb-4">
-                     <h2 style = "font-family: 'Dancing Script', sans-serif">DULMI SKIN CARE</h2>
+                     <h2 style = "font-family: 'Dancing Script', sans-serif">EpiCare SkinCare</h2>
                      <p>Inventory Management Sytem</p>
                      <hr>
                      <h3 style ="color:#be994e">Admin Login</h3>
@@ -49,6 +49,7 @@
                         case 'nouser':
                             $message = 'No user found!';
                             break;
+                        
                     }
 
                     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';

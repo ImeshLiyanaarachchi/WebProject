@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing Script:wght@400;700&display=swap">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
-    <title>Dulmi Skincare | Dashboard</title>
+    <title>EpiCare SkinCare | Dashboard</title>
 
     <style>
         .table-container {
-            max-height: 400px;
+            max-height: 500px;
             overflow-y: auto;  /* Enable vertical scrolling */
             overflow-x: auto;  /* Enable horizontal scrolling */
             border: 1px solid #ddd; 
@@ -43,7 +43,7 @@
 
             <!-------------------- navigation bars --------------------------------------->
             <nav class="nav1">
-            <label class="logo" style = "font-family: 'Dancing Script', sans-serif; font-size:40px">Dulmi SkinCare</label>
+            <label class="logo" style = "font-family: 'Dancing Script', sans-serif; font-size:40px">Epicare SkinCare</label>
             </nav>
             <nav class="nav2">
                 <input type="checkbox" id="check">
@@ -86,7 +86,7 @@
             <br><br><h1 style="color:white"><center>Inventory Details<center></h1>
             <div class="filter-container" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px; margin-top:20px">
                 <!-- Category Filter -->
-                <select id="category" name="category" class="form-select form-control-lg bg-light fs-6" style="width: 20%; border-radius: 25px; border: 1px solid #ccc; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); margin-right: 10px;">
+                <select id="categorybar" name="categorybar" class="form-select form-control-lg bg-light fs-6" style="width: 20%; border-radius: 25px; border: 1px solid #ccc; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); margin-right: 10px;">
                                 <option value="" disabled selected> Select a Category </option> 
                                 <?php
                                     if (!empty($categories)) {
@@ -265,20 +265,20 @@
 
                             <div class="input-group mb-3 ">
                             <span class="input-group-text"><i class="fa fa-cubes"></i></span>
-                            <input type="number" name="quantity" placeholder="Quantity" class="form-control form-control-lg bg-light fs-6" pattern="[0-9]+"required ></div>
+                            <input type="number" name="quantity" placeholder="Quantity" class="form-control form-control-lg bg-light fs-6" pattern="[0-9]+"required min = 1 max = 9999999999></div>
 
                             
                             <div class="input-group mb-3 ">
                             <span class="input-group-text"><i class="fas fa-tag"></i></span>
-                            <input type="number" step="0.01" name="buy_price" placeholder="Buying Price" class="form-control form-control-lg bg-light fs-6"></div>
+                            <input type="number" step="0.001" name="buy_price" placeholder="Buying Price" class="form-control form-control-lg bg-light fs-6" min = 1></div>
                             
                             <div class="input-group mb-3 ">
                             <span class="input-group-text"><i class="fas fa-tag"></i></span>
-                            <input type="number" step="0.01" name="sell_price" placeholder="Selling Price" class="form-control form-control-lg bg-light fs-6"></div>
+                            <input type="number" step="0.001" name="sell_price" placeholder="Selling Price" class="form-control form-control-lg bg-light fs-6" min = 1></div>
 
                             <div class="input-group mb-4 ">
                             <span class="input-group-text"><i class="fa fa-th-large"></i></span>
-                            <select id="category" name="category" class="form-select form-control-lg bg-light fs-6" required>
+                            <select id="category" name="category" class="form-select form-control-lg bg-light fs-6" required >
                             <option value="" disabled selected> Select a Category </option> 
                             <?php
                                 if (!empty($categories)) {
@@ -427,17 +427,17 @@
 
                                     <div class="input-group mb-2">
                                         <span class="input-group-text"><i class="fa fa-cubes"></i></span>
-                                        <input type="number" id="itemQuantity" name="itemQuantity" placeholder="Quantity" class="form-control form-control-lg bg-light fs-6" pattern="[0-9]+" required>
+                                        <input type="number" id="itemQuantity" name="itemQuantity" placeholder="Quantity" class="form-control form-control-lg bg-light fs-6" pattern="[0-9]+" required min=1>
                                     </div>
 
                                     <div class="input-group mb-2">
                                         <span class="input-group-text"><i class="fas fa-tag"></i></span>
-                                        <input type="number" id="itemBPrice" name="itemBPrice" placeholder="Buying Price" class="form-control form-control-lg bg-light fs-6" pattern="^\d+(\.\d{1,2})?$" required>
+                                        <input type="number" id="itemBPrice" name="itemBPrice" placeholder="Buying Price" class="form-control form-control-lg bg-light fs-6" pattern="^\d+(\.\d{1,2})?$" required min=1>
                                     </div>
 
                                     <div class="input-group mb-2">
                                         <span class="input-group-text"><i class="fas fa-tag"></i></span>
-                                        <input type="number" id="itemSPrice" name="itemSPrice" placeholder="Selling Price" class="form-control form-control-lg bg-light fs-6" pattern="^\d+(\.\d{1,2})?$" required>
+                                        <input type="number" id="itemSPrice" name="itemSPrice" placeholder="Selling Price" class="form-control form-control-lg bg-light fs-6" pattern="^\d+(\.\d{1,2})?$" required min=1>
                                     </div>
 
                                     <div class="input-group mb-2">
@@ -493,9 +493,8 @@
                         <table class="table table-bordered table-striped table-hover"  style="color: white; background-color: black; width: 60%; font-size: 1.1em; margin: 0 auto;margin-bottom: 20px;">
                             <thead class="thead-dark">
                                 <tr style="background-color:#b18224">
-                                    <th scope="col" >Category ID</th>
+                                    <th scope="col" style="width: 30%;">Category ID</th>
                                     <th scope="col" >Category Name</th>
-                                    <th scope="col" ></th>
                                 </tr>
                             </thead>
                             <tbody>
