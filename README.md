@@ -1,4 +1,4 @@
-# Inventory Management System-Epi Care Beauty Product Shop
+# 💄🛍️ Inventory Management System-Epi Care Beauty Product Shop
 
 ## Overview
 
