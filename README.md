@@ -42,7 +42,7 @@ Epi Skincare is a comprehensive Inventory Management System tailored for beauty 
 
 ## 🙏 Acknowledgments
 
-Special thanks to the team members for their collaborative efforts in developing the Library Management System.
+Special thanks to the team members for their collaborative efforts in developing the Inventory Management System.
 
 
  
