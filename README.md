@@ -1,6 +1,6 @@
 # 💄 Inventory Management System-Epi Care Beauty Products Shop
 
-## Overview
+## 📝 Overview
 
 Epi Skincare is a comprehensive Inventory Management System tailored for beauty product shops. Designed for use by shop workers, it includes an admin panel that offers complete control over user management, inventory tracking, and sales operations. The system’s responsive design ensures it works smoothly across different devices.
 
