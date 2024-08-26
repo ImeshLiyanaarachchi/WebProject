@@ -35,10 +35,34 @@ Epi Skincare is a comprehensive Inventory Management System tailored for beauty 
 - Version Control: Git, GitHub
 - Hosting- local host
 
- ## 🤝 How to Contribute
+ ## 🤝 How to Run
 
-1. Fork the repository.
-2. Clone the forked repository to your local machine.
+Steps to Download and Run a PHP Project
+ - Download the Project:
+
+ - Go to the repository page on GitHub.
+ - Click on the "Code" button, and then click "Download ZIP."
+ - Save the ZIP file to your computer.
+ - Extract the ZIP File:
+
+ - Locate the downloaded ZIP file on your computer.
+ - Right-click the file and choose "Extract All" or use an extraction tool to unzip it.
+ - You should now have a folder containing the project's files.
+ - Move the Project to htdocs:
+
+ - Open the XAMPP installation directory on your computer:
+ - Windows: C:\xampp\htdocs\
+ - macOS: /Applications/XAMPP/htdocs/
+ - Linux: /opt/lampp/htdocs/
+ - Move the extracted project folder to the htdocs directory.
+ - Start XAMPP:
+
+ - Open the XAMPP Control Panel.
+ - Start the Apache service by clicking the "Start" button next to it.
+
+   Additional Notes
+ - make sure to import the SQL file provided with the project into phpMyAdmin.
+ - When sign up as an admin use admin key as "7788skincare"
 
 ## 🙏 Acknowledgments
 
