@@ -260,7 +260,7 @@
 
                             <div class="input-group mb-3 ">
                             <span class="input-group-text"><i class="fas fa-file"></i></span>
-                            <input type="file" name="image" id = "image" accept = ".jpg, .jpeg, .png" value = "Insert an image "class="form-control form-control-lg bg-light fs-6"></div>
+                            <input type="file" name="image" id = "image" accept = ".jpg, .jpeg, .png" value = "Insert an image "class="form-control form-control-lg bg-light fs-6" required></div>
 
 
                             <div class="input-group mb-3 ">
