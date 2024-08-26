@@ -51,13 +51,13 @@ Steps to Download and Run a PHP Project
  - Move the Project to htdocs:
 
  - Open the XAMPP installation directory on your computer:
-        Windows: C:\xampp\htdocs\
-        macOS: /Applications/XAMPP/htdocs/
-        Linux: /opt/lampp/htdocs/
+        - Windows: C:\xampp\htdocs\
+        - macOS: /Applications/XAMPP/htdocs/
+        - Linux: /opt/lampp/htdocs/
  - Move the extracted project folder to the htdocs directory.
  - Start XAMPP:
-        Open the XAMPP Control Panel.
-        Start the Apache service by clicking the "Start" button next to it.
+        - Open the XAMPP Control Panel.
+        - Start the Apache service by clicking the "Start" button next to it.
 
    Additional Notes
  - make sure to import the SQL file provided with the project into phpMyAdmin.
