@@ -159,7 +159,7 @@
                                     </a>
 
                                     <!-- Delete Button with Icon -->
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#confirmationModal" data-action="includes/deleteItem.inc.php?id=<?php echo $row['item_ID']; ?>" data-message="Are you sure you want to delete this user?" class="text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#confirmationModal" data-action="includes/deleteItem.inc.php?id=<?php echo $row['item_ID']; ?>" data-message="Are you sure you want to delete this item?" class="text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </td>
