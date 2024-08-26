@@ -1,5 +1,5 @@
-CREATE DATABASE EpiCare_SkinCare;
-USE EpiCare_SkinCare;
+CREATE DATABASE dulmi_skincare;
+USE dulmi_skincare;
 
 CREATE TABLE admin(
 id INT(3) AUTO_INCREMENT PRIMARY KEY,
